@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="index_style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+			<script>
+
+				function getFibonacci(){
+					var num = document.getElementById("num").value;
+
+					var one = 1;
+					var two = 1;
+					
+					var i;
+
+					if(num == 0)
+						document.getElementById("result").innerHTML = "0";
+
+					else if(num == 1 || num == 2)
+						document.getElementById("result").innerHTML = "1";
+
+					else {
+						num -= 3;
+						for(i = 0; i < num; i++){
+							var temp = two;
+							two += one;
+							one = temp;
+						}
+	
+						document.getElementById("result").innerHTML = two;
+					}
+				}
+							
+
+			</script>
+
+	</head>
+
+	<body>
+
+	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
+	<div id="content">
+		<div> 
+			<form>
+				Enter the number for the Fibonacci sequence: <br>
+				<input type="number" name="num" id="num">
+			</form>
+
+			<button onclick="getFibonacci()"> Get Result! </button>
+
+			<span id="result"> </span>
+
+		</div>
+	</div>
+	</body>
+
+</html>
