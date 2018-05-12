@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="index_style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+			<script>
+				// a JSON object that is simulating the client database.
+				var clients = {
+					"john" : {"name" : "john", "age" : "25", "email" : "myemail@email.com", "phoneNumber" : "1234567890"},
+					"anna" : {"name" : "anna", "age" : "32", "email" : "anna@email.com", "phoneNumber" : "0987654321"}, };
+
+				// creates a new client in the database from the information the user inputs
+				function createClient(){
+					var client = { "clientName" : document.getElementById("clientName").value,
+					"phoneNumber" : document.getElementById("phoneNumber").value,
+					"email" : document.getElementById("email").value,
+					"age" : document.getElementById("age").value};
+
+					document.getElementById("clientText").innerHTML = client["clientName"];
+					clients[client["clientName"]] = client;
+					displayClients();
+				}
+
+				// finds a client in the database and dispays their information
+				function findClient(){
+
+					var c = document.getElementById("findClientName").value;
+					document.getElementById("findResult").innerHTML = "<br><hr>" + JSON.stringify(clients[c]).replace(/["{}]+/g, "  ").replace(/[,]+/g, "<br>");
+				}
+
+				// displays the names of all clients in the database
+				function displayClients(){
+
+					document.getElementById("allClients").innerHTML = "Client Names: ";
+					for(c in clients){
+						document.getElementById("allClients").innerHTML += "<br>" + JSON.stringify(c).replace(/"/g, "");
+					}
+				}
+					
+			</script>
+
+	</head>
+
+	<body onload="displayClients()">
+
+	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
+	<div id="content">
+		<div>
+		<p> The purpose of this script is to simulate a page that would take create clients for a business and store them in a database.  The first script allows a user to enter in client information and submit it to the "database."  The second script allows a user to search through the "database" for clients by name and display their information.  The third script shows the names of all clients currently in the "database." </p>
+		</div>
+		<div>
+			<form>
+				<input type="text" placeholder="Enter Name" id="clientName"><br>
+				<input type="text" placeholder="Phone Number" id="phoneNumber"><br>
+				<input type="text" placeholder="Email Address" id="email"><br>
+				<input type="text" placeholder="Age" id="age"><br>
+			</form>
+				<button onclick="createClient()"> Submit </button>
+				<span id="clientText"> </span>
+
+		</div>
+		<div>
+
+			<form>
+				<input type="text" placeholder="Enter client name" id="findClientName">
+			</form>
+			<br>
+			<button onclick="findClient()"> Find Client </button><br>
+
+			<span id="findResult"> </span>
+		</div>
+
+		<div id="allClients">
+		</div>
+	</div>
+	</body>
+
+</html>

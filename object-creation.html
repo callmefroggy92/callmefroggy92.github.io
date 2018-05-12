@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="index_style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+		<script>
+		
+			function Appointment(date, time, clientName, details){
+				this.date = date;
+				this.time = time;
+				this.clientName = clientName;
+				this.details = details;
+			}
+
+			function displayAppointment(app){
+				document.getElementById("result").innerHTML = "Appointment Details: <br> " + app.date + " <br> " + app.time + " <br> " + app.clientName + " <br> " + app.details;
+			}
+
+			function createAppointment(){
+				var app = new Appointment(document.getElementById("date").value, document.getElementById("time").value, document.getElementById("clientName").value, document.getElementById("details").value);
+			displayAppointment(app);
+			}			
+
+		</script>
+
+	</head>
+
+	<body>
+
+	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
+	<div id="content">
+		<div>
+		<p> The purpose of this script is to simulate a page that would take appointment requests from a client.  It requests info from the user for the date, time, name and appointment details.  It then creates an object using that information and displays it.
+		</div>
+		<div>
+			<form>
+				<input type="text" placeholder="Enter date (mm/dd/yy)" id="date"><br>
+				<input type="text" placeholder="Enter time (hh:mm)" id="time"><br>
+				<input type="text" placeholder="Enter name" id="clientName"><br>
+				<input type="text" placeholder="Enter details" id="details"><br>
+			</form>
+				<button onclick="createAppointment()"> Submit </button>
+
+			<br><hr><br>
+
+			<span id="result"></span>
+		</div>
+	</div>
+	</body>
+
+</html>
