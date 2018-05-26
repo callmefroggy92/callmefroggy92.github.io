@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="index_style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+			<script>
+
+				function createClient(){
+					var client = { "clientName" : document.getElementById("clientName").value,
+					"phoneNumber" : document.getElementById("phoneNumber").value,
+					"email" : document.getElementById("email").value,
+					"age" : document.getElementById("age").value};
+					
+					localStorage.setItem("clientInfo", JSON.stringify(client));			
+
+				}
+
+				function displayClient(){
+					if(localStorage.getItem("clientInfo") !== null){
+						var data = localStorage.getItem("clientInfo");
+						var clientInfo = JSON.parse(data);
+						console.log("clientInfo", clientInfo);
+						document.getElementById("clientName").value = clientInfo["clientName"];
+						document.getElementById("phoneNumber").value = clientInfo["phoneNumber"];
+						document.getElementById("email").value = clientInfo["email"];
+						document.getElementById("age").value = clientInfo["age"];
+					}
+				}
+					
+			</script>
+
+	</head>
+
+	<body onload="displayClient()">
+
+	<h1> CIT 261 -- Brigham Young University-Idaho </h1>.
+	<div id="content">
+		<div>
+		<p> The purpose of this webpage is to store a user's data locally within the browser.  Enter your info below, hit the submit button, and the data will be stored next time you open this page</p>
+		</div>
+		<div>
+			<form>
+				<input type="text" placeholder="Enter Name" id="clientName"><br>
+				<input type="text" placeholder="Phone Number" id="phoneNumber"><br>
+				<input type="text" placeholder="Email Address" id="email"><br>
+				<input type="text" placeholder="Age" id="age"><br>
+			</form>
+				<button onclick="createClient()"> Submit </button>
+
+		<div id="allClients">
+		</div>
+	</div>
+	</body>
+
+</html>
