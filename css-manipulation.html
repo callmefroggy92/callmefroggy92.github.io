@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="css-manipulation-style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google" content="notranslate">
+
+
+	<head>
+			<script>
+				function createStylesheet(){
+					var sheet = document.createElement('style')
+					sheet.innerHTML = "#textDiv {	width: 60%; min-height: 100%; background-color: #ddffff; float: left; color: black;}";
+					document.body.appendChild(sheet);
+				}
+
+				function changeColor(){
+					let colorCode = document.getElementById("colorCode").value;
+					let fontFamily = document.getElementById("selectFont").value;
+					document.getElementById("textDiv").style.color = colorCode;
+					document.getElementById("textDiv").style.fontFamily = fontFamily;
+				}
+			
+				function changeBackgroundColor(){
+					let hue = document.getElementById("hue").value;
+					let saturation = document.getElementById("saturation").value + "%";
+					let lightness = document.getElementById("lightness").value + "%";
+
+					let color = "hsl(" + hue + "," + saturation + "," + lightness + ")";
+
+					document.body.style.backgroundColor = color;
+				}	
+			</script>
+
+	</head>
+
+	<body onload="displayClients()">
+
+	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
+	<div id="content">
+		<div  id="textDiv">
+		<p> This page allows you to manually manipulate the color and style of this text.  Enter an HTML hexcode color in the form below and hit submit to see it change.</p>
+		</div>
+		<div>
+			<form>
+				<input type="text" placeholder="Enter hex color code" id="colorCode"><br>
+			</form>
+			<select id="selectFont">
+				<option value="Times">Times New Roman</option>
+		  		<option value="Georgia">Georgia</option>
+				<option value="Arial">Arial</option>
+	  			<option value="Helvetica">Helvetica</option>
+	  			<option value="Courier">Courier</option>
+			</select>
+				<button onclick="changeColor()"> Submit </button>
+
+		</div>
+
+		<div>
+			<p> Here you can adjust the hue, saturation and lightness of the background using the sliders below</p>
+			<label for="hue">Hue</label>
+			<input type="range" min="0" max="360" value="180" id="hue">
+			<label for="saturation">Saturation</label>
+			<input type="range" min="0" max="100" value="50" id="saturation">
+			<label for="lightness">Lightness</label>
+			<input type="range" min="0" max="100" value="50" id="lightness">
+			<button onclick="changeBackgroundColor()"> Submit </button>
+		</div>
+
+	</div>
+	</body>
+
+</html>

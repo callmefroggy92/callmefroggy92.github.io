@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="index_style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google" content="notranslate">
+
+
+	<head>
+			<script>
+				// a JSON object that is simulating the client database.
+				var clients = {
+					"john" : {"name" : "john", "age" : "25", "email" : "john@email.com", "phoneNumber" : "1234567890"},};
+
+				// creates a new client in the database from the information the user inputs
+				function createClient(){
+					var client = { "name" : document.getElementById("clientName").value,
+					"phoneNumber" : document.getElementById("phoneNumber").value,
+					"email" : document.getElementById("email").value,
+					"age" : document.getElementById("age").value};
+
+					clients[client["name"]] = client;
+					addClient(client);
+				}
+
+				// displays the names of all clients in the database
+				function displayClients(){
+
+					for(c in clients){
+						var cDiv = document.createElement("div");
+						var cText = document.createTextNode(JSON.stringify(clients[c]).replace(/["{}]+/g, "  "));	
+						cDiv.appendChild(cText);
+						cDiv.id = c["name"];
+
+						var deleteButton = document.createElement("button");
+						deleteButton.innerHTML = "delete";
+						deleteButton.addEventListener("click", function() { cDiv.parentElement.removeChild(cDiv); });
+						cDiv.appendChild(deleteButton);
+						
+						// This did not work!
+						//deleteButton.onclick = deleteClient(c["name"]);
+
+						var content = document.getElementById("content");
+						content.appendChild(cDiv);
+					}
+				}
+
+				// Appends a new client to the "content" div
+				function addClient(client){
+					var cDiv = document.createElement("div");
+					var cText = document.createTextNode(JSON.stringify(client).replace(/["{}]+/g, "  "));	
+					cDiv.appendChild(cText);
+
+					var deleteButton = document.createElement("button");
+					deleteButton.innerHTML = "delete";
+					deleteButton.addEventListener("click", function() { cDiv.parentElement.removeChild(cDiv); });
+					cDiv.appendChild(deleteButton);
+
+					var content = document.getElementById("content");
+					content.appendChild(cDiv);			
+
+				}
+
+				// This did not work!
+				function deleteClient(name){
+					var cDiv = document.getElementById(name);
+					var contentDiv = document.getElementById("content");
+					contentDiv.removeChild(cDiv);	
+				}
+					
+			</script>
+
+	</head>
+
+	<body onload="displayClients()">
+
+	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
+	<div id="content">
+		<div>
+		<p> The purpose of this script is to simulate a page that would take create clients for a business and store them in a database.  The clients in the "database" are displayed below.  By entering the client information into the database then hitting submit, the clients will be added to the database and then displayed below.</p>
+		</div>
+		<div>
+			<form>
+				<input type="text" placeholder="Enter Name" id="clientName"><br>
+				<input type="text" placeholder="Phone Number" id="phoneNumber"><br>
+				<input type="text" placeholder="Email Address" id="email"><br>
+				<input type="text" placeholder="Age" id="age"><br>
+			</form>
+				<button onclick="createClient()"> Submit </button>
+
+		</div>
+
+	</div>
+	</body>
+
+</html>
