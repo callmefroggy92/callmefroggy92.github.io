@@ -13,6 +13,10 @@ h1 {
 	border-radius: 30px;
 }
 
+#colorTransitionText a:hover{
+	color:red;
+}
+
 #textDiv {
 	width: 60%;
 	min-height: 100%;
@@ -38,11 +42,25 @@ div {
 	border-radius:20px;
 }
 
-a {
+#colorTransitionText a {
 	color: black;
+	transition: color 500ms;
 }
 
-a:hover {
-	color: white;
+#colorAnimationText {
+	animation-duration: 10s;
 }
 
+@keyframes animation{
+	0%   {color: black;}
+	10%  {color: red;}
+	20%  {color: blue;}
+	30% {color: green;}
+	40% {color: yellow;}
+	50% {color: white;}
+	60% {color: yellow;}
+	70% {color: green;}
+	80% {color: blue;}
+	90% {color: green;}
+	100%{color: black;}
+}
