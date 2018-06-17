@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="css-animation-style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="google" content="notranslate">
+
+
+	<head>
+			<script>
+				function toggleVisibility(menu){
+					if(menu.className == "here"){
+						menu.className = "fade";
+						setTimeout(function() {menu.className = "gone"}, 500);				
+					}
+					else{
+						menu.className ="here";
+					}
+				}
+			</script>
+
+	</head>
+
+	<body>
+
+	<h1 class="banner"> CIT 261 -- Brigham Young University-Idaho </h1>
+
+	<div id="content">
+
+		<div id="menu" style="width:15%;">
+
+			<div id="row1" onclick="toggleVisibility(document.getElementById('submenu1'));"> Sub-menu 1
+				<div id="submenu1" class="gone">
+					Item 1 <br>
+					Item 2 <br>
+					Item 3 <br>
+				</div>
+			</div>
+			<div id="row2" onclick="toggleVisibility(document.getElementById('submenu2'));"> Sub-menu 2
+				<div id="submenu2" class="gone">
+					Item 1 <br>
+					Item 2 <br>
+					Item 3 <br>
+				</div>
+			</div>
+			<div id="row3" onclick="toggleVisibility(document.getElementById('submenu3'));"> Sub-menu 3
+				<div id="submenu3" class="gone">
+					Item 1 <br>
+					Item 2 <br>
+					Item 3 <br>
+				</div>
+			</div>
+			<div id="row4" onclick="toggleVisibility(document.getElementById('submenu4'));"> Sub-menu 4 
+				<div id="submenu4" class="gone">
+					Item 1 <br>
+					Item 2 <br>
+					Item 3 <br>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div style="display:inline-block; width:65%;">
+			<span> This page shows examples of CSS animation.</span><br><br>
+			<span>The banner above is animated using CSS.</span><br><br>
+			<span>You can also touch the sub-menu links to the left to make the sub-menus appear with an animation.</span><br><br>
+		</div>
+
+	</div>
+	</body>
+
+</html>

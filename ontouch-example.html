@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%;">
+	<link rel="stylesheet" href="index_style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<script>
+			function createListener(){
+
+				document.addEventListener('touchstart', function(i) {
+					document.getElementById("xCoord").innerHTML = "X Coordinate: " + i.touches[0].clientX;
+					document.getElementById("yCoord").innerHTML = "Y Coordinate: " + i.touches[0].clientY;
+					}, false);
+
+
+				document.addEventListener('touchend', function(i) {
+					document.getElementById("xCoord").innerHTML = "X Coordinate: " + i.changedTouches[0].clientX;
+					document.getElementById("yCoord").innerHTML = "Y Coordinate: " + i.changedTouches[0].clientY;
+					}, false);
+
+				document.addEventListener('keypress', (event) => {
+					document.getElementById("key").innerHTML = "Key: " + event.key;
+				});
+
+			}
+
+			function changeKeyStatus(b){
+				if(b == true)
+					document.getElementById("keyStatus").innerHTML = "Key is pressed";
+				else
+					document.getElementById("keyStatus").innerHTML = "Key is released";
+			}
+
+
+			function createAnnoyingPopup(str){
+				alert(str)
+			}
+
+
+		</script>
+	<body onload="createListener()" onkeydown="changeKeyStatus(true)" onkeyup="changeKeyStatus(false)">
+	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
+		<div id="content">
+			<div> This page shows examples of a few different Javascript events created in a few different ways.  The first event shows the xy coordinates of when you touch the screen to when you release.  The second event shows what key you last pressed and whether the key is pressed or released.  The last event creates a popup when a button is pressed. </div>
+			<div id="xCoord" > X Coordinate: </div>
+			<div id="yCoord" > Y Coordinate: </div>
+
+			<div id="key"> Key: </div>
+			<div id="keyStatus"> Key is released </div>
+
+			<div> 			
+				<button onclick="createAnnoyingPopup('Thank you for clicking this button!')"> Click Me! </button> 
+			</div>
+
+		</div>
+	</body>
+
+</html>
+ 

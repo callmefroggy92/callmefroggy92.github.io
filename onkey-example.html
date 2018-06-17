@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%;">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<script>
+			function createListener(){
+				document.addEventListener('keypress', (event) => {
+					document.getElementById("key").innerHTML = "Key: " + event.key;
+				});
+			}
+
+			function changeKeyStatus(b){
+				if(b == true)
+					document.getElementById("keyStatus").innerHTML = "Key is pressed";
+				else
+					document.getElementById("keyStatus").innerHTML = "Key is released";
+			}
+
+		</script>
+	<body onload="createListener()" style="width: 100%; height: 100%;" onkeydown="changeKeyStatus(true)" onkeyup="changeKeyStatus(false)">
+
+		<div id="main" style="width: 100%; height: 100%; background-color: #dddddd;">
+			<div id="key" style="margin: auto; width: 100%;"> Key: </div>
+			<div id="keyStatus" style="margin: auto;"> </div>
+		</div>
+	</body>
+
+</html>

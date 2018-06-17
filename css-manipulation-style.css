@@ -31,6 +31,10 @@ h1 {
 	float: left;
 }
 
+#emptyDiv{
+	width: 35% !important;
+}
+
 div {
 	margin: 10px;
         text-align: left;
