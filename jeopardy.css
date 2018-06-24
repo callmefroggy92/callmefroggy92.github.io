@@ -1,0 +1,24 @@
+html, body{
+	background-color:white;
+	height: 100%;
+	width: 100%;
+}
+
+.categories{
+	font-size: 16pt;
+}
+
+span{	
+	font-size: 10pt;
+	margin: auto;
+	border: 1pt solid black;
+	width: 17%;
+	height: 15%;
+	display: inline-block;
+	background-color: #ffffff;
+	color: white;
+	text-align: center;
+	transition: background-color 500ms, opacity 500ms;
+	vertical-align: middle;
+	line-height: 1.5;
+}

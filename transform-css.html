@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%;">
+	<link rel="stylesheet" href="transform-style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<script>
+			var rotation = 0;
+			var scale = 1;
+			var skew = 0;
+
+			function rotateBloop(dir){
+				rotation += dir;
+				applyTransform();
+			}
+
+			function scaleBloop(mag){
+				scale += mag;
+				applyTransform();
+			}
+
+			function skewBloop(mag){
+				skew += mag;
+				applyTransform();
+			}
+
+			function applyTransform(){
+				document.getElementById("bloop").style.transform = "rotate(" + rotation + "deg) scale(" + scale + ", " + scale + ") skew(" + skew + "deg, 0deg)";
+			}
+
+		</script>
+	<body>
+	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
+		<div id="content">
+			<div> The purpose of this page is to demonstrate CSS Transforms.  Click below to change the rotation, scale and skew of the square </div> <br><br><br><br><br>
+			<span id="bloop"> </span>
+			<br><br>
+
+			<div>
+				<p><span onclick="rotateBloop(-10)"> - </span>   Rotate   <span onclick="rotateBloop(10)"> + </span></p>
+				<p><span onclick="scaleBloop(-.1)"> - </span>   Scale   <span onclick="scaleBloop(.1)"> + </span></p>
+				<p><span onclick="skewBloop(-3)"> - </span>   Skew   <span onclick="skewBloop(3)"> + </span></p>		
+			</div>
+
+		</div>
+	</body>
+
+</html>

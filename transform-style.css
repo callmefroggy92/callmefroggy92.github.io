@@ -1,0 +1,53 @@
+html, body{
+
+	height:100%;
+	width:100%;
+}
+
+h1 {
+        text-align: center;
+        color: white;
+        float: left;
+        width: 100%;
+	background-color: #1affff;
+	border-radius: 30px;
+}
+
+#content {
+	width: 60%;
+	min-height: 100%;
+	background-color: #ddffff;
+	float: left;
+}
+
+div {
+	margin: 10px;
+        text-align: center;
+        color: black;
+        float:left;
+        width:90%;
+	background-color: #ccffff;
+	display: block;
+	border-radius:20px;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: white;
+}
+
+#bloop{
+	margin:auto;
+	background-color: #cc7777;
+	width: 75px;
+	height: 75px;
+	display: block;
+	padding: 10px;
+}
+
+span{
+	color: #eeaaaa;
+}

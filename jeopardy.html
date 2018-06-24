@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%;">
+	<link rel="stylesheet" href="jeopardy.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script>
+
+		function setScreen(){
+			var tiles= ["t1","t2","t3","t4","t5",
+					"c1r1","c1r2","c1r3","c1r4","c1r5",
+					"c2r1","c2r2","c2r3","c2r4","c2r5",
+					"c3r1","c3r2","c3r3","c3r4","c3r5",
+					"c4r1","c4r2","c4r3","c4r4","c4r5",
+					"c5r1","c5r2","c5r3","c5r4","c5r5"];
+
+			var i = 0;
+			var interval = setInterval(function() {
+				document.getElementById(tiles[i]).style.backgroundColor = "#55ff88";
+				i++;
+				if(i > 29)
+					clearInterval(interval);
+				}, 500);
+			}
+
+		function loadQuestion(tile, span){
+
+			if(span.style.backgroundColor = "#55ff88"){
+				span.style.opacity = 0;
+				span.style.backgroundColor = "#5588ff";
+				setTimeout(function() {
+					span.style.opacity = 1;
+					if(tile == "c1r1")
+						span.innerHTML = "Who was the mother of Jesus?";
+					else if(tile == "c1r2")
+						span.innerHTML = "Who baptized Jesus?";
+					else if(tile == "c1r3")
+						span.innerHTML = "Who was the father of Jesus?";
+					else if(tile == "c1r4")
+						span.innerHTML = "Where was Jesus baptized?";
+					else if(tile == "c1r5")
+						span.innerHTML = "Where was Jesus crucified?";
+		
+					else if(tile == "c2r1")
+						span.innerHTML = "What is a covenant?";
+					else if(tile == "c2r2")
+						span.innerHTML = "What is one promise we make when we are baptized?";
+					else if(tile == "c2r3")
+						span.innerHTML = "Who can baptize?";
+					else if(tile == "c2r4")
+						span.innerHTML = "What are the two parts of baptism?";
+					else if(tile == "c2r5")
+						span.innerHTML = "What are two ways that the Holy Ghost can help us?";
+		
+					else if(tile == "c3r1")
+						span.innerHTML = "I love to read the holy scriptures. . .";
+					else if(tile == "c3r2")
+						span.innerHTML = "I like to look for rainbows. . .";
+					else if(tile == "c3r3")
+						span.innerHTML = "We have been born, like Nephi of old, to goodly parents who love the Lord. . .";
+					else if(tile == "c3r4")
+						span.innerHTML = "If you don't talk like most people do, some people talk and laugh at you. . .";
+					else if(tile == "c3r5")
+						span.innerHTML = "Because I want to be like the Savior and I can, I'm reading His instructions, I'm following His plan. . .";
+		
+					else if(tile == "c4r1")
+						span.innerHTML = "Who went back to Jerusalem to get the brass plates?";
+					else if(tile == "c4r2")
+						span.innerHTML = "Who baptized Jesus?";
+					else if(tile == "c4r3")
+						span.innerHTML = "Who buried the gold plates so that Joseph Smith could find them?";
+					else if(tile == "c4r4")
+						span.innerHTML = "Who did Jesus raise from the dead while He was on earth?";
+					else if(tile == "c4r5")
+						span.innerHTML = "Who were the first two people on earth?";
+	
+					else if(tile == "c5r1")
+						span.innerHTML = "Recite the First Article of Faith";
+					else if(tile == "c5r2")
+						span.innerHTML = "Recite the Second Article of Faith";
+					else if(tile == "c5r3")
+						span.innerHTML = "Recite the Third Article of Faith";
+					else if(tile == "c5r4")
+						span.innerHTML = "Recite the Fourth Article of Faith";
+					else if(tile == "c5r5")
+						span.innerHTML = "Recite the Fifth Article of Faith";
+					}, 500);
+				}
+				else
+					span.style.backgroundColor = "#88ffaa";
+		}		
+
+	</script>
+
+	<body onload="setScreen()">
+		<span id="t1" class="categories"> The Life Of Jesus </span>
+		<span id="t2" class="categories"> I Can't Wait Until I'm 8</span>
+		<span id="t3" class="categories"> Primary Songs</span>
+		<span id="t4" class="categories"> Scripture Stories</span>
+		<span id="t5" class="categories"> The Articles of Faith</span>
+		<br>
+		<span id="c1r1" onclick="loadQuestion('c1r1', this);">100 </span>
+		<span id="c2r1" onclick="loadQuestion('c2r1', this);">100 </span>
+		<span id="c3r1" onclick="loadQuestion('c3r1', this);">100 </span>
+		<span id="c4r1" onclick="loadQuestion('c4r1', this);">100 </span>
+		<span id="c5r1" onclick="loadQuestion('c5r1', this);">100 </span>
+		<br>
+		<span id="c1r2" onclick="loadQuestion('c1r2', this);">200 </span>
+		<span id="c2r2" onclick="loadQuestion('c2r2', this);">200 </span>
+		<span id="c3r2" onclick="loadQuestion('c3r2', this);">200 </span>
+		<span id="c4r2" onclick="loadQuestion('c4r2', this);">200 </span>
+		<span id="c5r2" onclick="loadQuestion('c5r2', this);">200 </span>
+		<br>
+		<span id="c1r3" onclick="loadQuestion('c1r3', this);">300 </span>
+		<span id="c2r3" onclick="loadQuestion('c2r3', this);">300 </span>
+		<span id="c3r3" onclick="loadQuestion('c3r3', this);">300 </span>
+		<span id="c4r3" onclick="loadQuestion('c4r3', this);">300 </span>
+		<span id="c5r3" onclick="loadQuestion('c5r3', this);">300 </span>
+		<br>
+		<span id="c1r4" onclick="loadQuestion('c1r4', this);">400 </span>
+		<span id="c2r4" onclick="loadQuestion('c2r4', this);">400 </span>
+		<span id="c3r4" onclick="loadQuestion('c3r4', this);">400 </span>
+		<span id="c4r4" onclick="loadQuestion('c4r4', this);">400 </span>
+		<span id="c5r4" onclick="loadQuestion('c5r4', this);">400 </span>
+		<br>
+		<span id="c1r5" onclick="loadQuestion('c1r5', this);">500 </span>
+		<span id="c2r5" onclick="loadQuestion('c2r5', this);">500 </span>
+		<span id="c3r5" onclick="loadQuestion('c3r5', this);">500 </span>
+		<span id="c4r5" onclick="loadQuestion('c4r5', this);">500 </span>
+		<span id="c5r5" onclick="loadQuestion('c5r5', this);">500 </span>
+	</body>
+</html>
