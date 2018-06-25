@@ -17,11 +17,11 @@
 					xhttp.send();
 				}
 
-				function postMessage(msg){
+				function postMessage(){
 					var xhttp = new XMLHttpRequest();
 					xhttp.open("POST", "https://cit261xhtm.firebaseio.com/messages.json", false);
 					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					xhttp.send("=" + msg);
+					xhttp.send("test=helloWorld");
 				}
 
 			</script>
@@ -37,7 +37,7 @@
 			
 		</div>
 		<div> 
-			<button onclick="postMessage(document.getElementById('messageToSend').value); getMessages()"> Send </button><br>
+			<button onclick="postMessage()"> Send </button><br>
 
 			<form>
 				<input type="text" id="messageToSend" placeholder="type your message here">
