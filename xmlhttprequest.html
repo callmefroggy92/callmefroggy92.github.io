@@ -10,23 +10,38 @@
 					var xhttp = new XMLHttpRequest();
   					xhttp.onreadystatechange = function() {
   				 		if (this.readyState == 4 && this.status == 200) {
-     							document.getElementById("messages").innerHTML = this.responseText;
+     							var j = this.responseText;
+							loadJson(j);
    						}
   					};
 					xhttp.open("GET", "https://cit261xhtm.firebaseio.com/messages.json", true);
 					xhttp.send();
 				}
 
-				function postMessage(){
+				function postMessage(msg){
 					var xhttp = new XMLHttpRequest();
 
 					xhttp.open("POST", "https://cit261xhtm.firebaseio.com/messages.json", true);
 					xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
-					xhttp.send(JSON.stringify({message: "helloWorld", user: "username"}));
+  					xhttp.onreadystatechange = function() {
+  				 		if (this.readyState == 4 && this.status == 200) {
+							getMessages();
+   						}
+  					};
 
-					getMessages();
+					xhttp.send(JSON.stringify({message: msg, user: "username"}));
+
 				}
+
+        			function loadJSON(j){
+					document.getElementById("messages").innerHTML = "";
+            				for (var key in j) {
+                				if (j.hasOwnProperty(key) && j[key].hasOwnProperty("message")) {
+                    					document.getElementById("messages").innerHTML += j[key]["user"] + " : " + j[key]["message"] + "<br>";
+                				}
+            				}
+        			}
 
 			</script>
 
@@ -39,13 +54,14 @@
 
 		<div id="messages">
 			
-		</div>
-		<div> 
-			<button onclick="postMessage()"> Send </button><br>
+		</div> <br>
+		<div>
 
 			<form>
 				<input type="text" id="messageToSend" placeholder="type your message here">
 			</form>
+
+			<button onclick="postMessage(document.getElementById('messageToSend').value)"> Send </button><br>
 
 		</div>
 	</div>

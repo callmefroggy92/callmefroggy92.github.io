@@ -1,0 +1,32 @@
+<html>
+    <script>
+        var j = {
+            "-LFrT3MQ5CLsZ3GlJFGp" : {
+                "message" : "helloWorld",
+                "user" : "username"
+            },
+            "-LFrT6Vz752VLqVrAMzO" : {
+                "message" : "helloWorld",
+                "user" : "username"
+            },
+            "-LFrT8iO_S2TUCM3WkZm" : {
+                "message" : "helloWorld",
+                "user" : "username"
+            }
+        };
+
+        function loadJSON(){
+            for (var key in j) {
+                if (j.hasOwnProperty(key) && j[key].hasOwnProperty("message")) {
+                    console.log(key);
+                    document.getElementById("content").innerHTML += j[key]["message"];
+                }
+            }
+        }
+
+    </script>
+
+    <body onload="loadJSON()">
+        <div id="content"> </div>
+    </body>
+</html>
