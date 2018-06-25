@@ -19,14 +19,11 @@
 
 				function postMessage(){
 					var xhttp = new XMLHttpRequest();
-  					xhttp.onreadystatechange = function() {
-  				 		if (this.readyState == 4 && this.status == 200) {
 
-   						}
-  					};
 					xhttp.open("POST", "https://cit261xhtm.firebaseio.com/messages.json", true);
-					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					xhttp.send("test=helloWorld");
+					xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+
+					xhttp.send(JSON.stringify({test: "helloWorld"}));
 				}
 
 			</script>
