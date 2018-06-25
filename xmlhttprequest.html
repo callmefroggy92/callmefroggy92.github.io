@@ -23,7 +23,9 @@
 					xhttp.open("POST", "https://cit261xhtm.firebaseio.com/messages.json", true);
 					xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
-					xhttp.send(JSON.stringify({test: "helloWorld"}));
+					xhttp.send(JSON.stringify({message: "helloWorld", user: "username"}));
+
+					getMessages();
 				}
 
 			</script>
