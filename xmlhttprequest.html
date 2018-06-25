@@ -17,6 +17,17 @@
 					xhttp.send();
 				}
 
+				function postMessage(msg){
+					var xhttp = new XMLHttpRequest();
+  					xhttp.onreadystatechange = function() {
+  				 		if (this.readyState == 4 && this.status == 200) {
+     							document.getElementById("messages").innerHTML = this.responseText;
+   						}
+  					};
+					xhttp.open("POST", "https://cit261xhtm.firebaseio.com/messages.json", true);
+					xhttp.send(msg);
+				}
+
 			</script>
 
 	</head>
@@ -30,9 +41,11 @@
 			
 		</div>
 		<div> 
-			<button onclick="getMessages()"> Send </button><br>
+			<button onclick="postMessage(document.getElementById('messageToSend').value); getMessages()"> Send </button><br>
 
-			<span id="result"> </span>
+			<form>
+				<input type="text" id="messageToSend" placeholder="type your message here">
+			</form>
 
 		</div>
 	</div>
