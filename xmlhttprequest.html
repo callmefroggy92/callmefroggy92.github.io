@@ -13,8 +13,8 @@
      							document.getElementById("messages").innerHTML = this.responseText;
    						}
   					};
-					xhttp.open("POST", "https://cit261xhtm.firebaseio.com/messages/1.json", true);
-					xhttp.send("test");
+					xhttp.open("GET", "https://cit261xhtm.firebaseio.com/messages.json", true);
+					xhttp.send();
 				}
 
 			</script>
