@@ -11,7 +11,7 @@
   					xhttp.onreadystatechange = function() {
   				 		if (this.readyState == 4 && this.status == 200) {
      							var j = this.responseText;
-							loadJson(j);
+							loadJSON(j);
    						}
   					};
 					xhttp.open("GET", "https://cit261xhtm.firebaseio.com/messages.json", true);
@@ -47,7 +47,7 @@
 
 	</head>
 
-	<body>
+	<body onload="getMessages()">
 
 	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
 	<div id="content">
