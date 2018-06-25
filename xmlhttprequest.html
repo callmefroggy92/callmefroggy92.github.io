@@ -19,7 +19,7 @@
 
 				function postMessage(){
 					var xhttp = new XMLHttpRequest();
-					xhttp.open("POST", "https://cit261xhtm.firebaseio.com/messages.json", false);
+					xhttp.open("POST", "https://cit261xhtm.firebaseio.com/messages.json", true);
 					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 					xhttp.send("test=helloWorld");
 				}
