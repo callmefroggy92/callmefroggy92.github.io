@@ -6,12 +6,23 @@
 	<head>
 			<script>
 
+
+        			function loadJSON(j){
+					document.getElementById("messages").innerHTML = "";
+            				for (var key in j) {
+                				if (j.hasOwnProperty(key) && j[key].hasOwnProperty("message")) {
+							console.log(j[key]["message"]);
+                    					document.getElementById("messages").innerHTML += j[key]["user"] + " : " + j[key]["message"] + "<br>";
+                				}
+            				}
+        			}
+
 				function getMessages(){
 					var xhttp = new XMLHttpRequest();
   					xhttp.onreadystatechange = function() {
   				 		if (this.readyState == 4 && this.status == 200) {
-     							var j = this.responseText;
-							loadJSON(j);
+							console.log("Messages loaded successfully");
+							loadJSON(this.responseText);
    						}
   					};
 					xhttp.open("GET", "https://cit261xhtm.firebaseio.com/messages.json", true);
@@ -34,14 +45,6 @@
 
 				}
 
-        			function loadJSON(j){
-					document.getElementById("messages").innerHTML = "";
-            				for (var key in j) {
-                				if (j.hasOwnProperty(key) && j[key].hasOwnProperty("message")) {
-                    					document.getElementById("messages").innerHTML += j[key]["user"] + " : " + j[key]["message"] + "<br>";
-                				}
-            				}
-        			}
 
 			</script>
 
