@@ -29,7 +29,7 @@
 					xhttp.send();
 				}
 
-				function postMessage(msg){
+				function postMessage(msg, usr){
 					var xhttp = new XMLHttpRequest();
 
 					xhttp.open("POST", "https://cit261xhtm.firebaseio.com/messages.json", true);
@@ -41,7 +41,7 @@
    						}
   					};
 
-					xhttp.send(JSON.stringify({message: msg, user: "username"}));
+					xhttp.send(JSON.stringify({message: msg, user: usr}));
 
 				}
 
@@ -61,10 +61,11 @@
 		<div>
 			<br>
 			<form>
-				<input type="text" id="messageToSend" placeholder="type your message here">
+				<input type="text" id="messageToSend" placeholder="type your message here"> <br>
+				<input type="text" id="username" placeholder="Screen Name"> <br>
 			</form>
 			<br>
-			<button onclick="postMessage(document.getElementById('messageToSend').value)"> Send </button>
+			<button onclick="postMessage(document.getElementById('messageToSend').value, document.getElementById('username').value)"> Send </button>
 			<br>
 
 		</div>
