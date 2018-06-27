@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="index_style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+			<script>
+
+				function Person(name){
+					this.name = name;
+				}
+
+				function Employee(name, boss, organization){
+					Person.call(this, name);
+					this.boss = boss;
+					this.organization = organization;
+				}
+
+				function Client(name, phone, email){
+					Person.call(this, name);
+					this.phone = phone;
+					this.email = email;
+				}
+
+				var clients = new Object();
+				var employees = new Object();
+
+				function addClient(name, phone, email){
+					var c = new Client(name, phone, email);
+					clients[c.name] = c;
+					console.log(clients[c.name].name);
+					showClients();
+				}
+
+				function addEmployee(name, boss, organization){
+					var e = new Employee(name, boss, organization);
+					employees[e.name] = e;
+					showEmployees();
+				}
+
+				function showClients(){
+					document.getElementById("clientList").innerHTML = "Clients:";
+					for(var i=0 in clients){
+						console.log(clients[i].name);
+						document.getElementById("clientList").innerHTML += " <br><br>Name: " + clients[i].name + "<br>Phone Number: " + clients[i].phone + "<br>Email: " + clients[i].email;
+					}
+				}
+
+				function showEmployees(){
+					document.getElementById("employeeList").innerHTML = "Employees:";
+					for(var i=0 in employees){
+						document.getElementById("employeeList").innerHTML += " <br><br>Name: " + employees[i].name + "<br>Boss: " + employees[i].boss + "<br>Organization: " + employees[i].organization;
+					}
+				}
+
+
+			</script>
+
+	</head>
+
+	<body>
+
+	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
+	<div id="content">
+
+		<div id="list"> </div>
+
+		<div id="addClient">
+			<p> Add client: <br></p>
+			<form>
+				<input type="text" placeholder="Client's Name" id="clientName"><br>
+				<input type="text" placeholder="Client's Phone Number" id="clientPhone"><br>
+				<input type="text" placeholder="Client's Email" id="clientEmail"><br>
+			</form>
+			<button onclick="addClient(document.getElementById('clientName').value, document.getElementById('clientPhone').value, document.getElementById('clientEmail').value)"> Submit </button>
+		</div>
+
+		<div id="clientList">Clients:</div>
+
+		<div id="addEmployee">
+			<p> Add employee: <br></p>
+			<form>
+				<input type="text" placeholder="Employee's Name" id="employeeName"><br>
+				<input type="text" placeholder="Employee's Boss" id="employeeBoss"><br>
+				<input type="text" placeholder="Employee's Organization" id="employeeOrganization"><br>
+			</form>
+			<button onclick="addEmployee(document.getElementById('employeeName').value, document.getElementById('employeeBoss').value, document.getElementById('employeeOrganization').value)"> Submit </button>
+		</div>
+
+		<div id="employeeList"> Employees: </div>
+	</div>
+	</body>
+
+</html>
