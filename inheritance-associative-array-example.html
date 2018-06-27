@@ -10,30 +10,36 @@
 					this.name = name;
 				}
 
+				// The employee prototype inherits from Person
 				function Employee(name, boss, organization){
 					Person.call(this, name);
 					this.boss = boss;
 					this.organization = organization;
 				}
 
+				// The client prototype inherits from Person
 				function Client(name, phone, email){
 					Person.call(this, name);
 					this.phone = phone;
 					this.email = email;
 				}
 
+				// Both clients and employees are intiated as associative arrays
 				var clients = new Object();
 				var employees = new Object();
 
 				function addClient(name, phone, email){
 					var c = new Client(name, phone, email);
+
+					// The client name is used as the "key" for the array
 					clients[c.name] = c;
-					console.log(clients[c.name].name);
 					showClients();
 				}
 
 				function addEmployee(name, boss, organization){
 					var e = new Employee(name, boss, organization);
+
+					// The employee name is used as the "key" for the array
 					employees[e.name] = e;
 					showEmployees();
 				}
@@ -41,7 +47,6 @@
 				function showClients(){
 					document.getElementById("clientList").innerHTML = "Clients:";
 					for(var i=0 in clients){
-						console.log(clients[i].name);
 						document.getElementById("clientList").innerHTML += " <br><br>Name: " + clients[i].name + "<br>Phone Number: " + clients[i].phone + "<br>Email: " + clients[i].email;
 					}
 				}
@@ -63,7 +68,9 @@
 	<h1> CIT 261 -- Brigham Young University-Idaho </h1>
 	<div id="content">
 
-		<div id="list"> </div>
+		<div id="description">
+	 		<p> The purpose of this page is to show examples of object inheritance and associative arrays in Javascript.  It simulates two directories: one for clients and one for employees.  Use the forms below to add new clients or employees to their respective lists. </p>
+		</div>
 
 		<div id="addClient">
 			<p> Add client: <br></p>
