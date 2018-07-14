@@ -55,13 +55,13 @@
 				}
 
 				console.log("Saved state: " + arr);
-				localStorage.setItem("sparkEZPullingTensionSavedState", JSON.stringify(arr));
+				window.localStorage.setItem("sparkEZPullingTensionSavedState", JSON.stringify(arr));
 			}	
 
 			function load(){
 				if(localStorage.savedState != null){
 					var input = document.getElementById("racewayInput");
-					var arr = JSON.parse(localStorage.sparkEZPullingTensionSavedState);
+					var arr = JSON.parse(window.localStorage.sparkEZPullingTensionSavedState);
 
 					input.innerHTML = "<input id='length0' value=" + arr.raceway0.l + "><input id='angle0' value=" + arr.raceway0.a + "><br>";
 					numRaceway = arr.numRaceway;
