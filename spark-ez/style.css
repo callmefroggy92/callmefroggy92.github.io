@@ -1,0 +1,101 @@
+html, body{
+	height: 100%;
+	width: 100%;
+}
+
+#header{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:10%;
+	background-color:#f1f144;
+	border-radius:15px;
+	animation-name:stretch;
+	animation-timing-function:linear;
+	animation-duration:2s;
+	font-size: 3em;
+}
+
+#menubutton{
+	height:80%;
+	width:10%;
+	max-height:80%;
+	max-width:10%;
+	background-color:#b2b222;
+	display:inline;
+	vertical-align:middle;
+	margin-left:10px;
+	animation-duration:4s;
+	animation-name:menuanimation;
+	animation-timing-function:linear;
+}
+
+#banner{
+	min-width:88%;
+	font-size: 1em;
+	color:white;
+	text-align:center;
+	display:inline;
+}
+
+.visiblemenu{
+	position:fixed;
+	top:10%;
+	left:0px;
+	width:40%;
+	height:100%;
+	background-color:#b9b9b2;
+	animation-duration: .5s;
+	animation-name: showMenu;
+	animation-timing-function:linear;
+	text-align: center;
+	color: black;
+	font-size: .75em;
+}
+
+a:hover{
+	color:white;
+	transition: color .5s;
+}
+
+#content{
+	width:100%;
+	min-height:85%;
+	border: 0pt;
+	padding: 0;
+	padding-top: 15%;
+}
+
+.gonemenu{
+	position:fixed;
+	top:10%;
+	left:0px;
+	width:0%;
+	height:100%;
+	display:none;
+}	
+
+@keyframes stretch{
+	0% {width: 0%;  color:rgba(255,255,255,0);}
+	25%{width:75%;}
+	50% {width: 100%; color:rgba(255,255,255,0);}
+	100%{color:rgba(255,255,255,1);}
+}
+
+@keyframes showMenu{
+	0% {width: 0%; color:rgba(0,0,0,0);}
+	50% {width: 40%; color:rgba(0,0,0,0);}
+	100% {color:rgba(0,0,0,1)};
+}
+
+@keyframes menuanimation{
+	0% {opacity:0;}
+	20% {opacity:0;}
+	40% {opacity:1; transform:rotate(0deg);}
+	55% {transform:rotate(120deg);}
+	70% {transform:rotate(250deg);}
+	80% {transform:rotate(0deg);}
+	90% {transform:scale(1.25); }
+	100%{transform:scale(1);}
+}

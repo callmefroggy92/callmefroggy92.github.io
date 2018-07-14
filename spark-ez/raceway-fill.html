@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="content-style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+		<script>
+			function loadForm(numCables){
+				var form = document.getElementById("input");
+				form.innerHTML= "Enter diameter of cables: <br>";
+
+				for(var i = 0; i < numCables; i++){
+					form.innerHTML += "<input id='cable" + (i + 1) + "' placeholder='Diameter of cable:" + (i + 1) + "'>";
+				}
+			}
+
+			function calculate(){
+				document.getElementById("result").innerHTML = "Raceway fill: " + (getCableArea() / getRacewayArea()) + "%";
+			}
+
+			function getRacewayArea(){
+				return Math.pow(document.getElementById("conduitdiameter").value / 2, 2) * 3.14;
+			}
+
+			function getCableArea(){
+				var numCables = document.getElementById("numcables").value;
+				var diameter = 0;
+
+				for(var i = 0; i < numCables; i++){
+					diameter += Number(document.getElementById("cable" + (i + 1)).value);
+				}
+
+				console.log(diameter);
+				return (Math.pow(diameter / 2 ,2) * 3.14);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="content">
+
+			<br><br>
+				<select id="numcables" onchange="loadForm(this.value)">
+					<option value="0"> Number of Cables </option>
+					<option value="1"> 1 </option>
+					<option value="2"> 2 </option>
+					<option value="3"> 3 </option>
+					<option value="4"> 4 </option>
+					<option value="5"> 5 </option>
+					<option value="6"> 6 </option>
+					<option value="7"> 7 </option>
+					<option value="8"> 8 </option>
+					<option value="9"> 9 </option>
+					<option value="10"> 10 </option>
+				</select> <br>
+			<form id="input">
+
+			</form> <br>
+
+			<form>
+				Enter the diameter of the raceway: <br>
+				<input id="conduitdiameter" placeholder="Diameter of Raceway">
+			</form>
+
+			<button onclick="calculate()"> GO </button> <br>
+
+			<span id="result"> </span>
+
+		</div>
+	</body>
+
+</html>

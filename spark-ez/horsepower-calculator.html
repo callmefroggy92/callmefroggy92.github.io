@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="content-style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+		<script>
+			function calculate(){
+				document.getElementById("hp").innerHTML = "ANSWER: " + ((Number(document.getElementById("v").value) * Number(document.getElementById("a").value) * Number(document.getElementById("pf").value) * Number(document.getElementById("eff").value) * getPhase(document.getElementById("phase").value)) / 746);
+			}	
+
+			function getPhase(phase){
+				if(phase == "three")
+					return 1.73;
+				else
+					return 1;
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<div id="content">
+
+			<br><br>
+
+			<form>
+				<select id="phase">
+					<option value="single"> Single Phase </option>
+					<option value="three"> Three Phase </option>
+				</select><br>
+				<input id="v" placeholder="Nominal Voltage" type="num"><br>
+				<input id="a" placeholder="Full Load Amps" type="num"><br>
+				<input id="pf" placeholder="Motor Power Factor" type="num"><br>
+				<input id="eff" placeholder="Motor Efficiency" type="num"><br>
+			</form>
+
+			<button id="submit" onclick="calculate()"> GO </button> <br>
+
+			<span id="hp"> Motor Horsepower: </span>
+
+		</div>
+	</body>
+
+</html>

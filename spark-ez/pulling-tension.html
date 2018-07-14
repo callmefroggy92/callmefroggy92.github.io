@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="content-style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+		<script>
+			var numRaceway = 1;
+
+			function addRaceway(){
+				document.getElementById("racewayInput").innerHTML += "Fitting Bend Angle: <br><select id='bend" + numRaceway + "'> <option value='15'> 15 Deg </option> <option value='30'> 30 Deg </option>  <option value='45'> 45 Deg </option> <option value='60'> 60 Deg </option>  <option value='90'> 90 Deg </option></select><br>";
+				document.getElementById("racewayInput").innerHTML += "<input id='length" + numRaceway + "' placeholder='Length of Raceway'><input id='angle" + numRaceway + "' placeholder='Slope of Raceway'><br>"
+				numRaceway++;
+			}
+
+			function calculate(){
+				var tension = 0;
+				var weight = Number(document.getElementById("weight").value) / 1000;
+				var friction = Number(document.getElementById("friction").value);
+				for(var i = 0; i < numRaceway; i++){
+					var l = Number(document.getElementById("length" + i).value);
+					var a = Number(document.getElementById("angle" + i).value);
+					if(document.getElementById("bend" + i)){
+						var bend = Number(document.getElementById("bend" + i).value);
+						console.log("Bend " + i + " tension multiplier: " + Math.exp(friction*(bend*Math.PI/180)));
+						tension *= Math.exp(friction*(bend*Math.PI/180));
+					}
+					if(a != 0)
+						tension += (l * weight * (Math.sin(a * (Math.PI/180)) + Math.cos(a * Math.PI/180)*friction));
+					else
+						tension += (l * weight * friction);		
+				}
+
+				document.getElementById("result").innerHTML = "Total tension required: " + tension.toFixed(2) + "lbs";
+			}
+
+			function raceway(l, a){
+				this.l = l;
+				this.a = a;
+			}
+
+			function bend(deg){
+				this.deg = deg;
+			}
+
+			function save(){
+				var arr = new Object();
+				arr["friction"] = Number(document.getElementById("friction").value);
+				arr["weight"] = Number(document.getElementById("weight").value);
+				arr["numRaceway"] = numRaceway;
+				for(var i = 0; i < numRaceway;i++){
+					if(i != 0)
+						arr["bend" + i] = new bend(Number(document.getElementById("bend" + i).value));
+						arr["raceway" + i] = new raceway(Number(document.getElementById("length" + i).value), Number(document.getElementById("angle" + i).value));
+				}
+
+				console.log("Saved state: " + arr);
+				localStorage.setItem("sparkEZPullingTensionSavedState", JSON.stringify(arr));
+			}	
+
+			function load(){
+				if(localStorage.savedState != null){
+					var input = document.getElementById("racewayInput");
+					var arr = JSON.parse(localStorage.sparkEZPullingTensionSavedState);
+
+					input.innerHTML = "<input id='length0' value=" + arr.raceway0.l + "><input id='angle0' value=" + arr.raceway0.a + "><br>";
+					numRaceway = arr.numRaceway;
+					document.getElementById("friction").value = arr.friction;
+					document.getElementById("weight").value = arr.weight;
+
+					for(var i = 1; i < numRaceway; i++){
+
+						if(arr["bend" + i].deg == 15)
+							document.getElementById("racewayInput").innerHTML += "Fitting Bend Angle: <br><select id='bend" + i + "'> <option value='15' selected> 15 Deg </option> <option value='30'> 30 Deg </option>  <option value='45'> 45 Deg </option> <option value='60'> 60 Deg </option>  <option value='90'> 90 Deg </option></select><br>";
+						else if(arr["bend" + i].deg == 30)
+							document.getElementById("racewayInput").innerHTML += "Fitting Bend Angle: <br><select id='bend" + i + "'> <option value='15' selected> 15 Deg </option> <option value='30' selected> 30 Deg </option>  <option value='45'> 45 Deg </option> <option value='60'> 60 Deg </option>  <option value='90'> 90 Deg </option></select><br>";
+						else if(arr["bend" + i].deg == 45)
+							document.getElementById("racewayInput").innerHTML += "Fitting Bend Angle: <br><select id='bend" + i + "'> <option value='15' selected> 15 Deg </option> <option value='30'> 30 Deg </option>  <option value='45' selected> 45 Deg </option> <option value='60'> 60 Deg </option>  <option value='90'> 90 Deg </option></select><br>";
+						else if(arr["bend" + i].deg == 60)
+							document.getElementById("racewayInput").innerHTML += "Fitting Bend Angle: <br><select id='bend" + i + "'> <option value='15' selected> 15 Deg </option> <option value='30'> 30 Deg </option>  <option value='45'> 45 Deg </option> <option value='60' selected> 60 Deg </option>  <option value='90'> 90 Deg </option></select><br>";
+						else if(arr["bend" + i].deg == 90)
+							document.getElementById("racewayInput").innerHTML += "Fitting Bend Angle: <br><select id='bend" + i + "'> <option value='15' selected> 15 Deg </option> <option value='30'> 30 Deg </option>  <option value='45'> 45 Deg </option> <option value='60'> 60 Deg </option>  <option value='90' selected> 90 Deg </option></select><br>";
+
+
+						input.innerHTML += "<input id='length" + i + "' value=" + arr["raceway" + i].l + "><input id='angle" + i + "' value=" + arr["raceway" + i].a + "><br>";
+					}
+				}
+			}
+
+			function calculateFriction(typeConduit, typeCable){
+				var friction = 0;
+				if(typeConduit == "PVC"){
+					if(typeCable == "PVC")
+						friction = .35;
+					else if(typeCable == "PE")
+						friction = .35;
+					else if(typeCable == "PO")
+						friction = .35;
+					else if(typeCable == "CSPE")
+						friction = .5;
+					else if(typeCable == "XLPE")
+						friction = .35;
+					else if(typeCable == "CPE")
+						friction = .5;
+				}
+				
+				else if(typeConduit == "M"){
+					if(typeCable == "PVC")
+						friction = .4;
+					else if(typeCable == "PE")
+						friction = .35;
+					else if(typeCable == "PO")
+						friction = .35;
+					else if(typeCable == "CSPE")
+						friction = .5;
+					else if(typeCable == "XLPE")
+						friction = .35;
+					else if(typeCable == "CPE")
+						friction = .5;
+				}
+
+				document.getElementById("friction").value = friction;
+			}		
+						
+					
+		</script>
+	</head>
+
+	<body>
+		<div id="content">
+
+			<br><br>
+
+			<form>
+				<input id="friction" placeholder="Coefficient of Friction"> <br> OR <br> 
+				<select id="typeConduit" onchange="calculateFriction(this.value, document.getElementById('typeCable').value)">
+					<option value=""> Type of Conduit </option>
+					<option value="PVC"> PVC </option>
+					<option value="M"> Metallic </option>
+				</select>
+
+				<select id="typeCable" onchange="calculateFriction(document.getElementById('typeConduit').value, this.value)">
+					<option value=""> Type of Cable Jacket </option>
+					<option value="PVC"> PVC </option>
+					<option value="PE"> PE </option>
+					<option value="PO"> PO </option>
+					<option value="CSPE"> CSPE </option>
+					<option value="XLPE"> XLPE </option>
+					<option value="CPE"> CPE </option>
+				</select> <br> <br>
+				<input id="weight" placeholder="Weight of Cable as lbs/kft"><br>
+			</form><br>
+			<form id="racewayInput">
+				<input id="length0" placeholder="Length of Raceway"><input id="angle0" placeholder="Slope of Raceway"><br>
+			</form><br>
+			<button id="addRaceway" onclick="addRaceway()"> Add Raceway </button> <br>
+
+			<br><button onclick="calculate()"> GO </button>
+			<br><span id="result"></span> <br>
+
+			<br><button id="saveButton" onclick="save()"> Save </button> <button id="loadButton" onclick="load()"> Load </button> <br>
+			
+
+		</div>
+	</body>
+
+</html>

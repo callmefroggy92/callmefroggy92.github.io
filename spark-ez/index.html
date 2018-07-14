@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+			<script>
+				function showMenu(){
+					var menu = document.getElementById("menu");
+					if(menu.className == "gonemenu")
+						menu.className = "visiblemenu";
+					else
+						menu.className = "gonemenu";
+				}
+
+				function changeFrame(url){
+					document.getElementById("content").src = url;
+					showMenu();
+				}
+
+			</script>
+
+	</head>
+
+	<body>
+		<div id="header">
+			<button id="menubutton" onclick="showMenu()"> <img src="logo.png" style="object-fit: fill; height:100%; width:100%;"> </button>
+			<span id="banner"> SPARK-EZ </span>		
+		</div>
+		<div id="menu" class="gonemenu">
+			<a onclick="changeFrame('horsepower-calculator.html')"> Motor Horsepower</a><br>
+			<a onclick="changeFrame('voltage-drop.html')"> Voltage Drop</a><br>
+			<a onclick="changeFrame('raceway-fill.html')"> Raceway Fill</a><br>
+			<a onclick="changeFrame('pulling-tension.html')"> Pulling Tension </a><br>	
+		</div>
+		<iframe id="content" src="main.html"></iframe>
+	</body>
+
+</html>

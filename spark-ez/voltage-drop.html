@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="content-style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+		<script src="voltage-drop.js"> </script>
+		<script>
+			function calculate(){
+				var drop = calculateVoltageDrop(document.getElementById("v").value, document.getElementById("l").value, document.getElementById("a").value, document.getElementById("cablesize").value, document.getElementById("phase").value);
+				document.getElementById("voltagedrop").innerHTML = "Total Voltage Drop:" + drop;				
+
+			}	
+		</script>
+	</head>
+
+	<body>
+		<div id="content">
+
+			<br><br>
+
+			<form>
+				<select id="phase">
+					<option value="single"> Single Phase </option>
+					<option value="three"> Three Phase </option>
+				</select> <br>
+				<input id="v" placeholder="Nominal Voltage" type="num"><br>
+				<input id="a" placeholder="Full Load Amps" type="num"><br>
+				<input id="l" placeholder="One-way Length in Feet" type="num"><br>
+				<select id="cablesize">
+					<option value="16">16 Gage </option>
+					<option value="14">14 Gage </option>
+					<option value="12">12 Gage </option>
+					<option value="10">10 Gage </option>
+					<option value="8">8 Gage </option>
+					<option value="6">6 Gage </option>
+					<option value="4">4 Gage </option>
+					<option value="2">2 Gage </option>
+					<option value="0">0 Gage </option>
+					<option value="00">00 Gage </option>
+					<option value="000">000 Gage </option>
+					<option value="0000">0000 Gage </option>
+				</select> <br>
+			</form>
+
+			<button id="submit" onclick="calculate()"> GO </button> <br>
+
+			<span id="voltagedrop"> Total Voltage Drop: </span>
+
+		</div>
+	</body>
+
+</html>
