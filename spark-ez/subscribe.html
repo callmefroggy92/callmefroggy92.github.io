@@ -6,18 +6,24 @@
 	<head>
 		<script>
 			function subscribe(name, email){
-				var xhttp = new XMLHttpRequest();
+				if(document.getElementById("agree").checked == true){
+					var xhttp = new XMLHttpRequest();
 
-				xhttp.open("POST", "https://spark-ez.firebaseio.com/spark-ez.json", true);
-				xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+					xhttp.open("POST", "https://spark-ez.firebaseio.com/spark-ez.json", true);
+					xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
-  				xhttp.onreadystatechange = function() {
-  				 	if (this.readyState == 4 && this.status == 200) {
+  					xhttp.onreadystatechange = function() {
+  					 	if (this.readyState == 4 && this.status == 200) {
+	
+   						}
+  					};
 
-   					}
-  				};
+					xhttp.send(JSON.stringify({"name": name, "email": email}));
+					window.alert("You have successfully subscribed!");
+				}
 
-				xhttp.send(JSON.stringify({"name": name, "email": email}));
+				else
+					window.alert("You must agree to receive emails in order to subscribe!");
 			}
 		</script>
 	</head>
@@ -26,9 +32,13 @@
 		<div id="content">
 			<br>
 
+			<p> Enter your name and email to subscribe to our newsletter and receive updates about new tools, features and tutorials, as well as articles to help you continue to learn! </p>
+
 			<form>
 				<input id="name" placeholder="Your Name">
 				<input id="email" placeholder="Your Email"><br>
+				<input id="agree" type="checkbox">
+				<label for="agree"> I agree to receive emails from Spark-EZ </label>
 			</form>
 			<button onclick="subscribe(document.getElementById('name').value, document.getElementById('email').value);"> Subscribe </button>
 		</div>
