@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="content-style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+		<script>
+			function subscribe(name, email){
+
+					var xhttp = new XMLHttpRequest();
+
+					xhttp.open("PUT", https://spark-ez.firebaseio.com/spark-ez/-LHeMEA2Q-nQ1Fm_WWK_/email.json", true);
+					xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+
+  					xhttp.onreadystatechange = function() {
+  					 	if (this.readyState == 4 && this.status == 200) {
+	
+   						}
+  					};
+
+					xhttp.send(JSON.stringify({"thisisa": "test",}));
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="content">
+			<button onclick="test()"> Test </button>
+		</div>
+	</body>
+
+</html>
