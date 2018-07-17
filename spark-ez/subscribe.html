@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="content-style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+		<script>
+			function subscribe(name, email){
+				var xhttp = new XMLHttpRequest();
+
+				xhttp.open("POST", "https://spark-ez.firebaseio.com/spark-ez.json", true);
+				xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+
+  				xhttp.onreadystatechange = function() {
+  				 	if (this.readyState == 4 && this.status == 200) {
+
+   					}
+  				};
+
+				xhttp.send(JSON.stringify({"name": name, "email": email}));
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="content">
+			<br>
+
+			<form>
+				<input id="name" placeholder="Your Name">
+				<input id="email" placeholder="Your Email"><br>
+			</form>
+			<button onclick="subscribe(document.getElementById('name').value, document.getElementById('email').value);"> Subscribe </button>
+		</div>
+	</body>
+
+</html>

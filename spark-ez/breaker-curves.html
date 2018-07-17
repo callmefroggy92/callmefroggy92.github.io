@@ -12,18 +12,18 @@
 			var multiples = [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5, 4.75, 5, 5.25, 5.5, 5.75, 6, 6.25, 6.5, 6.75,
 					 7, 7.25, 7.5, 7.75, 8, 8.25, 8.5, 8.75, 9, 9.25, 9.5, 9.75, 10];
 
-			function createCurve(pickup, curveType){
+			function createCurve(pickup, curveType, td){
 				curve.length = 0;
 				curve = getPoints(pickup, curveType);
 				var factor = getFactor(curveType);
 				console.log(curve);
 
-				drawCurve(pickup, factor);
+				drawCurve(pickup, factor, td);
 
 				createListener();
 			}
 
-			function drawCurve(pickup, factor){
+			function drawCurve(pickup, factor, td){
 
 				var canvas = document.getElementById("curve");
 				var context = canvas.getContext("2d");
@@ -31,14 +31,14 @@
 
 				context.beginPath();
 				context.lineJoin = "round";
-				context.moveTo(30, canvas.height - (curve[2] * factor) - 50);
+				context.moveTo(30, canvas.height - (curve[2] * factor) - 20);
 				for(var i = 3; i < curve.length; i++){
-					context.lineTo((i * 10) + 10, canvas.height - (curve[i] * factor) - 50);
+					context.lineTo((i * 10) + 10, canvas.height - (curve[i] * factor) - 20);
 				}
 
 				context.stroke();
 
-				drawGrid(pickup, factor);
+				drawGrid(pickup, factor, td);
 
 			}
 			
@@ -53,7 +53,7 @@
 					return 15;
 			}
 
-			function drawGrid(pickup, factor){
+			function drawGrid(pickup, factor, td){
 				var canvas = document.getElementById("curve");
 				var context = canvas.getContext("2d");
 				
@@ -71,9 +71,9 @@
 					context.fillText("Amps", canvas.width / 2 - 25, canvas.height - 5);
 
 				for(var i = 0; i < 10; i += .5){
-					context.fillText(i, 5, canvas.height - (i * factor) - 50);
-					context.moveTo(15, canvas.height - (i * factor) - 50);
-					context.lineTo(canvas.width, canvas.height - (i * factor) - 50);
+					context.fillText(i + td, 5, canvas.height - (i * factor) - 20);
+					context.moveTo(15, canvas.height - (i * factor) - 20);
+					context.lineTo(canvas.width, canvas.height - (i * factor) - 20);
 				}
 					
 				context.strokeStyle = "rgba(0,0,0,0.3)";					
@@ -137,18 +137,20 @@
 					var tripTime = 0;
 
 					if(curveType == "IEEEMI")
-						tripTime = getIEEEModerateCurvePoint(adjustedX);
+						tripTime = Number(getIEEEModerateCurvePoint(adjustedX));
 		
 					else if(curveType == "IEEEI")
-						tripTime = getIEEECurvePoint(adjustedX);
+						tripTime = Number(getIEEECurvePoint(adjustedX));
 
 					else if(curveType == "IEEEVI")
-						tripTime = getIEEEVeryCurvePoint(adjustedX);
+						tripTime = Number(getIEEEVeryCurvePoint(adjustedX));
 
 					else if(curveType == "IEEEEI")
-						tripTime = getIEEEExtremeCurvePoint(adjustedX);
+						tripTime = Number(getIEEEExtremeCurvePoint(adjustedX));
 
-					drawCurve(pickup, getFactor(curveType));
+					tripTime += Number(document.getElementById("td").value);
+
+					drawCurve(pickup, getFactor(curveType), Number(document.getElementById("td").value));
 					var canvas = document.getElementById("curve");
 					var context = canvas.getContext("2d");
 
@@ -184,6 +186,7 @@
 				Hit the go button to create your graph.  The tripping time is along the y-axis, while the tripping current is along the x-axis. </p>
 			<div id="options" style="height:20%; width: 100%;">
 				<input id="pickup" placeholder="Pickup Amps">
+				<input id="td" placeholder="Time Delay"><br>
 				<select id="curveType">
 					<option value="" selected> Choose the curve type </option>
 					<option value="IEEEMI"> IEEE Moderately Inverse Curve </option>
@@ -191,7 +194,8 @@
 					<option value="IEEEVI"> IEEE Very Inverse Curve </option>
 					<option value="IEEEEI"> IEEE Extremely Inverse Curve </option>
 				</select>
-				<button onclick="createCurve(Number(document.getElementById('pickup').value), document.getElementById('curveType').value);"> GO </button>
+				<button onclick="createCurve(Number(document.getElementById('pickup').value), document.getElementById('curveType').value,
+				Number(document.getElementById('td').value));"> GO </button>
 			</div>
 
 			<canvas id="curve" style="height:80%; width:100%; background-color:white;"> </canvas>
