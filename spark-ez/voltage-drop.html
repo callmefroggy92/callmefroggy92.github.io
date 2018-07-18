@@ -5,7 +5,9 @@
 
 	<head>
 		<script src="voltage-drop.js"> </script>
+		<script src="comments.js"> </script>
 		<script>
+			getComments('voltagedrop');
 			function calculate(){
 				var drop = calculateVoltageDrop(document.getElementById("v").value, document.getElementById("l").value, document.getElementById("a").value, document.getElementById("cablesize").value, document.getElementById("phase").value);
 				document.getElementById("voltagedrop").innerHTML = "Total Voltage Drop:" + drop;				
@@ -47,6 +49,17 @@
 
 			<span id="voltagedrop"> Total Voltage Drop: </span>
 
+		</div>
+
+
+		<div id="commentSection">
+			<div id="comments"></div>
+			<form>
+				<input id="name" placeholder="Your Name"><br>
+				<textarea id="comment" style="width:60%" placeholder="Write your comment here. . ."> </textarea>
+			</form><br>
+
+			<button onclick="submitComment('voltagedrop', document.getElementById('name').value, document.getElementById('comment').value)"> Submit </button><br>
 		</div>
 	</body>
 

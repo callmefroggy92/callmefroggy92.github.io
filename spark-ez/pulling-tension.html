@@ -4,7 +4,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<head>
+		<script src="comments.js"> </script>
 		<script>
+			getComments('pullingtension');
 			var numRaceway = 1;
 
 			function addRaceway(){
@@ -161,6 +163,15 @@
 			<br><button id="saveButton" onclick="save()"> Save </button> <button id="loadButton" onclick="load()"> Load </button> <br>
 			
 
+		</div>
+		<div id="commentSection">
+			<div id="comments"></div>
+			<form>
+				<input id="name" placeholder="Your Name"><br>
+				<textarea id="comment" style="width:60%" placeholder="Write your comment here. . ."> </textarea>
+			</form><br>
+
+			<button onclick="submitComment('pullingtension', document.getElementById('name').value, document.getElementById('comment').value)"> Submit </button><br>
 		</div>
 	</body>
 

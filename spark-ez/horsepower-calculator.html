@@ -4,7 +4,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<head>
+		<script src="comments.js"> </script>
 		<script>
+			getComments('horsepowercalculator');
+
 			function calculate(){
 				document.getElementById("hp").innerHTML = "ANSWER: " + ((Number(document.getElementById("v").value) * Number(document.getElementById("a").value) * Number(document.getElementById("pf").value) * Number(document.getElementById("eff").value) * getPhase(document.getElementById("phase").value)) / 746);
 			}	
@@ -39,6 +42,16 @@
 
 			<span id="hp"> Motor Horsepower: </span>
 
+		</div>
+
+		<div id="commentSection">
+			<div id="comments"></div>
+			<form>
+				<input id="name" placeholder="Your Name"><br>
+				<textarea id="comment" style="width:60%" placeholder="Write your comment here. . ."> </textarea>
+			</form><br>
+
+			<button onclick="submitComment('horsepowercalculator', document.getElementById('name').value, document.getElementById('comment').value)"> Submit </button><br>
 		</div>
 	</body>
 

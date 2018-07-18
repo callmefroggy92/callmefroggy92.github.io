@@ -9,7 +9,7 @@
 
 					var xhttp = new XMLHttpRequest();
 
-					xhttp.open("PUT", "https://spark-ez.firebaseio.com/spark-ez/-LHeMEA2Q-nQ1Fm_WWK_/email/thisisa.json", true);
+					xhttp.open("PUT", "https://spark-ez.firebaseio.com/spark-ez/-LHeMEA2Q-nQ1Fm_WWK_/email.json", true);
 					xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
   					xhttp.onreadystatechange = function() {
@@ -18,7 +18,7 @@
    						}
   					};
 
-					xhttp.send("HELLO WORLD");
+					xhttp.send(JSON.stringify({"HELLO":"WORLD"}));
 
 			}
 		</script>
