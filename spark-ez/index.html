@@ -5,6 +5,21 @@
 
 	<head>
 			<script>
+			
+				function setTimer(){
+					window.setInterval(changeFont, 10000);
+				}
+				function changeFont(){
+					var ez = document.getElementById("ez");
+					ez.style.color = getRandomColor();
+				}
+
+				function getRandomColor(){
+					var color = "rgb(" + (Math.random() * 255).toFixed(0) + "," + (Math.random() * 255).toFixed(0) + "," + (Math.random() * 255).toFixed(0) + ")";
+					console.log(color);
+					return color;
+				}
+
 				function showMenu(){
 					var menu = document.getElementById("menu");
 					if(menu.className == "gonemenu")
@@ -22,10 +37,10 @@
 
 	</head>
 
-	<body>
+	<body onload="setTimer()">
 		<div id="header">
 			<button id="menubutton" onclick="showMenu()"> <img src="logo.png" style="object-fit: fill; height:100%; width:100%;"> </button>
-			<span id="banner"> SPARK-EZ </span>		
+			<span id="banner"> SPARK-<a id="ez">EZ</a> </span>		
 		</div>
 		<div id="menu" class="gonemenu">
 			<a onclick="changeFrame('horsepower-calculator.html')"> Motor Horsepower</a><br>

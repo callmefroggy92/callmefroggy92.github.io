@@ -67,6 +67,11 @@ a:hover{
 	padding-top: 15%;
 }
 
+#ez{
+	transition: color 10s;
+	transition-timing-function:linear;
+}
+
 .gonemenu{
 	position:fixed;
 	top:10%;
