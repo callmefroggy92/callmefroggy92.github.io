@@ -12,7 +12,11 @@
 				form.innerHTML= "Enter diameter of cables: <br>";
 
 				for(var i = 0; i < numCables; i++){
-					form.innerHTML += "<input id='cable" + (i + 1) + "' placeholder='Diameter of cable:" + (i + 1) + "'>";
+					var input = document.createElement("input");
+					input.id = "cable" + (i + 1);
+					input.placeholder = "Diameter of cable:" + (i + 1);
+					form.appendChild(input);
+					form.innerHTML += "<br>";
 				}
 			}
 

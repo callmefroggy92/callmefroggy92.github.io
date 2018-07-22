@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<link rel="stylesheet" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<head>
+			<script>
+
+				var bulletPoints = ["", "",
+						"<p>* Met group <br><br>* Created schedule <br><p>",
+						"<p>* Began setting up GitHub page <br><br>*Submitted first three assignments: 'Loops, Conditional Statements, Functions...', 'Object Creation, Functions...', and 'JSON Parse, Stringify'</p>",
+						"<p>* Taught 'JSON Parse, Stringify' in group meeting <br><br>* First teaching experience went well</p>",
+						"<p>* Submitted 'Local Storage' <br><br>* Had problems with XMLHTTPRequest</p>",
+						"<p>* Taught 'DOM Manipulation' <br><br>* Submitted 'DOM Manipulation', 'Manipulating CSS Class Properties', 'Creating CSS3 Transitions and Animations'</p>",
+						"<p>* Struggled to figure out XMLHTTPRequest</p>",
+						"<p>* Submitted 'Javascript Events', HTML5 tags', and 'Designing, Defining and Triggering CSS3 Animations' <br><br>* Taught 'Javascript Events' in group meeting <br>* Created a 'Jeopardy' game to use for primary class</p>",
+						"<p>* Deadline changed to 6/26, rushed to finish remaining 3 assignments <br><br>* Submitted 'CSS3 Transitions' and 'CSS3 Animations'<br><br>* Figured out problem with XMLHTTPRequest</p>",
+						"<p>* Submitted 'XMLHTTPRequest' and resubmitted examples on inheritance and associative arrays <br><br>* Created idea for final project--Spark-EZ<br><br>* Began work on final project</p>",
+						"<p>* Created layout and foundation of Spark-EZ<br>* Created horsepower and voltage drop tools for Spark-EZ</p>",
+						"<p>* Worked on final project <br><br>* Submitted first draft to Brother Baer, including the cable tension calculator<br>* Created 'Subscribe' tool using XMLHTTPRequest and Firebase as the REST API</p>",
+						"<p>* Created Time-Overcurrent graph for project <br><br>* Created comment section for project<br><br>* Submitted final project</p>"];
+				var week = 1;
+				var startX = 0;
+				var endX = 0;
+
+				function setSwipeListener(){
+					document.getElementById("journal").addEventListener('touchstart', function(i) {
+						startX = i.touches[0].clientX;
+					}, false);
+
+					document.getElementById("journal").addEventListener('touchend', function(i){
+						endX = i.changedTouches[0].clientX;
+
+						if(endX - startX > 50){
+							if(week > 2)
+								week--;
+							document.getElementById("week").innerHTML = "Week " + week;
+							document.getElementById("bulletPoints").innerHTML = bulletPoints[week];
+						}
+
+						else if(startX - endX > 50){
+							if(week < 13)
+								week++;
+							document.getElementById("week").innerHTML = "Week " + week;
+							document.getElementById("bulletPoints").innerHTML = bulletPoints[week];
+						}
+					}, false);
+				}
+			</script>
+
+	</head>
+
+	<body onload="setSwipeListener();">
+		<div id="journal">
+			<div id="week" class="content">Swipe to begin!</div>
+			<div id="bulletPoints" class="content"> </div>
+			<div id="audio" class="content"> <audio> </div>		
+		</div>
+	</body>
+
+</html>

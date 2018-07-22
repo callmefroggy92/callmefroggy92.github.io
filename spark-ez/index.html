@@ -8,6 +8,7 @@
 			
 				function setTimer(){
 					window.setInterval(changeFont, 10000);
+					window.setInterval(changeSubMenuClass, 5000);
 				}
 				function changeFont(){
 					var ez = document.getElementById("ez");
@@ -16,7 +17,6 @@
 
 				function getRandomColor(){
 					var color = "rgb(" + (Math.random() * 255).toFixed(0) + "," + (Math.random() * 255).toFixed(0) + "," + (Math.random() * 255).toFixed(0) + ")";
-					console.log(color);
 					return color;
 				}
 
@@ -33,6 +33,20 @@
 					showMenu();
 				}
 
+				function changeSubMenuClass(){
+					var submenus = [document.getElementById("tools"), document.getElementById("tutorials"), document.getElementById("subscribe")];
+
+					for(var i = 0; i < 3; i++){
+						if(submenus[i].className == "bluesubmenu")
+							submenus[i].className = "greensubmenu";
+						else if(submenus[i].className == "greensubmenu")
+							submenus[i].className = "redsubmenu";
+						else if(submenus[i].className == "redsubmenu")
+							submenus[i].className = "bluesubmenu";
+					}
+				}
+						
+
 			</script>
 
 	</head>
@@ -43,12 +57,15 @@
 			<span id="banner"> SPARK-<a id="ez">EZ</a> </span>		
 		</div>
 		<div id="menu" class="gonemenu">
-			<a onclick="changeFrame('horsepower-calculator.html')"> Motor Horsepower</a><br>
-			<a onclick="changeFrame('voltage-drop.html')"> Voltage Drop</a><br>
-			<a onclick="changeFrame('raceway-fill.html')"> Raceway Fill</a><br>
-			<a onclick="changeFrame('pulling-tension.html')"> Pulling Tension </a><br>
-			<a onclick="changeFrame('breaker-curves.html')"> Time Overcurrent Curve </a><br>		
-			<a onclick="changeFrame('subscribe.html')"> Subscribe </a><br>		
+			<a id="tools" class="bluesubmenu"> Tools </a><br>
+			<a onclick="changeFrame('horsepower-calculator.html')"> -  Motor Horsepower</a><br>
+			<a onclick="changeFrame('voltage-drop.html')"> -  Voltage Drop</a><br>
+			<a onclick="changeFrame('raceway-fill.html')"> -  Raceway Fill</a><br>
+			<a onclick="changeFrame('pulling-tension.html')"> -  Pulling Tension </a><br>
+			<a onclick="changeFrame('breaker-curves.html')"> -  Time Overcurrent Curve </a><br>
+			<br><a id="tutorials" class="redsubmenu"> Tutorials </a><br>
+			<a> - </a>		
+			<br><a onclick="changeFrame('subscribe.html')" id="subscribe" class="greensubmenu"> Subscribe </a><br>		
 		</div>
 		<iframe id="content" src="main.html"></iframe>
 	</body>

@@ -25,7 +25,7 @@ function getComments(url){
 
   	xhttp.onreadystatechange = function() {
   		if (this.readyState == 4 && this.status == 200) {
-			loadComments(JSON.parse(this.responseText));
+			loadComments(JSON.parse(xhttp.responseText));
    		}
   	};
 
@@ -37,7 +37,10 @@ function loadComments(data){
 	for (var key in data) {
 		if (data.hasOwnProperty(key) && data[key].hasOwnProperty("comment")) {
 			console.log(data[key]["comment"]);
-			document.getElementById("comments").innerHTML += "<p style='width:100%; border:1pt solid black;'> " + data[key]["name"] + " -- " + new Date(data[key]["date"]) + " <br> >> " + data[key]["comment"] + "</p><br>";
+			var div = document.createElement("p");
+			div.style = "width:90%; border:1pt solid black;"
+			div.innerHTML = data[key]["name"] + " -- " + new Date(data[key]["date"]) + " <br> >> " + data[key]["comment"] + "<br>";
+			document.getElementById("comments").appendChild(div);
                 }
 	}
 }
