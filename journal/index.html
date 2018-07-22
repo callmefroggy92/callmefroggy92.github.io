@@ -14,21 +14,23 @@
 						"<p>* Taught 'DOM Manipulation' <br><br>* Submitted 'DOM Manipulation', 'Manipulating CSS Class Properties', 'Creating CSS3 Transitions and Animations'</p>",
 						"<p>* Struggled to figure out XMLHTTPRequest</p>",
 						"<p>* Submitted 'Javascript Events', HTML5 tags', and 'Designing, Defining and Triggering CSS3 Animations' <br><br>* Taught 'Javascript Events' in group meeting <br>* Created a 'Jeopardy' game to use for primary class</p>",
-						"<p>* Deadline changed to 6/26, rushed to finish remaining 3 assignments <br><br>* Submitted 'CSS3 Transitions' and 'CSS3 Animations'<br><br>* Figured out problem with XMLHTTPRequest</p>",
+						"<p>* Finished remaining 3 assignments before deadline on 6/26 <br><br>* Submitted 'CSS3 Transitions' and 'CSS3 Animations'<br><br>* Figured out problem with XMLHTTPRequest</p>",
 						"<p>* Submitted 'XMLHTTPRequest' and resubmitted examples on inheritance and associative arrays <br><br>* Created idea for final project--Spark-EZ<br><br>* Began work on final project</p>",
 						"<p>* Created layout and foundation of Spark-EZ<br>* Created horsepower and voltage drop tools for Spark-EZ</p>",
-						"<p>* Worked on final project <br><br>* Submitted first draft to Brother Baer, including the cable tension calculator<br>* Created 'Subscribe' tool using XMLHTTPRequest and Firebase as the REST API</p>",
-						"<p>* Created Time-Overcurrent graph for project <br><br>* Created comment section for project<br><br>* Submitted final project</p>"];
+						"<p>* Worked on final project <br><br>* Submitted first draft to Brother Baer, including the cable tension calculator<br><br>* Created 'Subscribe' tool using XMLHTTPRequest and Firebase as the REST API</p>",
+						"<p>* Created Time-Overcurrent graph for project (and already using it at work!) <br><br>* I originally was only going to have a subscribe feature for the XMLHTTPRequest, but decided to create comment section for project<br><br>* Submitted final project!</p>"];
 				var week = 1;
 				var startX = 0;
 				var endX = 0;
 
+				var audios = ["", "", "Week-02.mp3", "Week-03.mp3", "Week-04.mp3", "Week-05.mp3", "Week-06.mp3", "Week-07.mp3", "Week-08.mp3", "Week-09.mp3", "Week-10.mp3",
+						"Week-11.mp3", "Week-12.mp3", "Week-13.mp3", "Reflection.mp3"];
 				function setSwipeListener(){
 					document.getElementById("journal").addEventListener('touchstart', function(i) {
 						startX = i.touches[0].clientX;
 					}, false);
 
-					document.getElementById("journal").addEventListener('touchend', function(i){
+					document.getElementById("journal").addEventListener('touchend', function(i){	
 						endX = i.changedTouches[0].clientX;
 
 						if(endX - startX > 50){
@@ -36,6 +38,9 @@
 								week--;
 							document.getElementById("week").innerHTML = "Week " + week;
 							document.getElementById("bulletPoints").innerHTML = bulletPoints[week];
+							document.getElementById("audioSource").src = audios[week];
+							document.getElementById("audio").load();
+							document.getElementById("audio").play();
 						}
 
 						else if(startX - endX > 50){
@@ -43,7 +48,11 @@
 								week++;
 							document.getElementById("week").innerHTML = "Week " + week;
 							document.getElementById("bulletPoints").innerHTML = bulletPoints[week];
+							document.getElementById("audioSource").src = audios[week];
+							document.getElementById("audio").load();
+							document.getElementById("audio").play();
 						}
+
 					}, false);
 				}
 			</script>
@@ -52,9 +61,13 @@
 
 	<body onload="setSwipeListener();">
 		<div id="journal">
-			<div id="week" class="content">Swipe to begin!</div>
+			<div id="week" class="content">This is a short review of my semester with CIT261, ending with an overall reflection of what I've learned!  <br><br>Swipe to begin!</div>
 			<div id="bulletPoints" class="content"> </div>
-			<div id="audio" class="content"> <audio> </div>		
+			<div class="content"> 
+				<audio id="audio" controls>
+					<source type="audio/mpeg" id="audioSource">
+				</audio>
+			</div>		
 		</div>
 	</body>
 
